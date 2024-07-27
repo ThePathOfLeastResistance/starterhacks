@@ -30,3 +30,7 @@ class Image(models.Model):
             new_name = generate_random_filename(extension)
             self.image.name = new_name
         super().save(*args, **kwargs)'''
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to='media/')
