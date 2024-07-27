@@ -1,0 +1,31 @@
+.landing-page {
+  display: grid;
+  grid-template-areas:
+    "big-text big-text big-text model model"
+    "feature-text feature-text feature-text feature-pic feature-pic";
+  gap: 20px;
+  padding: 20px;
+}
+
+.big-text {
+  grid-area: big-text;
+}
+
+.model {
+  grid-area: model;
+}
+
+.feature-text {
+  grid-area: feature-text;
+}
+
+.feature-pic {
+  grid-area: feature-pic;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
