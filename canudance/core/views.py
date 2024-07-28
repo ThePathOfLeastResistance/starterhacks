@@ -126,3 +126,12 @@ class ImageSnapShotUploadView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ClearImageSnapshotsView(APIView):
+    def get(self, request, *args, **kwargs):
+        try:
+            models.ImageSnapshot.objects.all().delete()
+            return Response({"message": "All image snapshots have been deleted."}, status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

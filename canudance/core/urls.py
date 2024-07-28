@@ -4,6 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    path("upload/image-snapshot", views.ImageSnapShotUploadView.as_view())
+    path("upload/image-snapshot", views.ImageSnapShotUploadView.as_view()),
+    path("delete-snapshots", views.ClearImageSnapshotsView.as_view())
 
 ]
