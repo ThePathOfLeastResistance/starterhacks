@@ -1,18 +1,21 @@
 import React from "react";
 
-const Model = () => {
+interface ModelProps {
+  videoRef: React.RefObject<HTMLVideoElement>;
+  isActive: boolean;
+}
+
+const Model: React.FC<ModelProps> = ({ videoRef, isActive }) => {
   return (
-    <div className="relative w-full h-full" id="modelScreenshot">
+    <div className="h-full">
       <video
-        className="absolute inset-0 w-full h-full "
-        autoPlay
+        ref={videoRef}
+        className={`w-full h-full object-cover transition-transform duration-300 ${
+          isActive ? "scale-100" : "scale-0"
+        }`}
+        src="/dance-body.mp4"
         loop
-        muted
-        playsInline
-      >
-        <source src="/dance-body.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      />
     </div>
   );
 };

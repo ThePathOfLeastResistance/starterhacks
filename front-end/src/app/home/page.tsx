@@ -1,4 +1,4 @@
-import Model from "@/components/model";
+import Model from "@/components/Model";
 import Image from "next/image";
 import "./page.css";
 

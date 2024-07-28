@@ -1,8 +1,8 @@
 import axios from "axios";
 
 interface Screenshots {
-  dancer_image: string;
-  customer_image: string;
+  modelImage: string;
+  userImage: string;
 }
 
 const postScreenshots = async (screenshots: Screenshots) => {
