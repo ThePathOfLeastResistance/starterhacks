@@ -35,7 +35,7 @@ class ImageSnapShotUploadView(APIView):
 
     def post(self, request, *args, **kwargs):
         serializer = serializers.ImageSnapShotSerializer(data=request.data)
-        print(serializer.initial_data)
+        # print(serializer.initial_data)
         serializer.initial_data['dancer_image'] = serializer.initial_data['modelImage']
         serializer.initial_data['customer_image'] = serializer.initial_data['userImage']
         serializer.initial_data['dance_sequence'] = 1
@@ -44,5 +44,5 @@ class ImageSnapShotUploadView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.error_messages)
+        # print(serializer.error_messages)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
