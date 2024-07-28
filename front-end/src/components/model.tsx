@@ -1,14 +1,18 @@
-import Spline from "@splinetool/react-spline";
-
 import React from "react";
 
 const Model = () => {
   return (
-    <div className="h-[400px] md:h-[600px] relative">
-      <Spline
-        scene="https://prod.spline.design/o1ONSc8QZYOX9Hwg/scene.splinecode"
-        className="w-full h-full"
-      />
+    <div className="relative w-full h-full" id="modelScreenshot">
+      <video
+        className="absolute inset-0 w-full h-full "
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/dance-body.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
   );
 };
