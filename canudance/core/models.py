@@ -31,6 +31,18 @@ class Image(models.Model):
             self.image.name = new_name
         super().save(*args, **kwargs)'''
 
+class DanceSequence(models.Model):
+    name = models.CharField(default="", max_length=255)
+    grade = models.FloatField()
+    end_photo = models.ImageField(upload_to="media/")
 
-class Image(models.Model):
-    image = models.ImageField(upload_to='media/')
+class ImageSnapshot(models.Model):
+    dancer_image = models.TextField() # in base64 format (string)
+    customer_image = models.TextField() # in base64 format (string)
+    dance_sequence = models.ForeignKey(DanceSequence, on_delete=models.CASCADE)
+
+
+
+
+
+
