@@ -78,7 +78,7 @@ const DanceComponent: React.FC = () => {
   const toggleActivity = () => {
     setIsActive((prev) => {
       if (prev) {
-        fetchResults();
+        setTimeout(fetchResults, 3000);
       }
       if (videoRef.current) {
         prev ? videoRef.current.pause() : videoRef.current.play();

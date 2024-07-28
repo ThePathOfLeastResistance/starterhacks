@@ -63,7 +63,7 @@ class ImageSnapShotUploadView(APIView):
                                                   generation_config={"response_mime_type": "application/json"})
                     prompt = """The two people are having a dance competition. 
                     The cartoon model is leading and the person is trying to follow along. 
-                    Give a number from 0-10 on how well the person on the right is following along. 
+                    Give a number from 0-10 (besides) on how well the person in the room is following along. 
                     Make assumptions if necessary. Also can you provide a bit of feedback to the person 
                     on the right on how they can fix their position to match the leader. 
 
