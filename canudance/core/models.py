@@ -40,6 +40,8 @@ class ImageSnapshot(models.Model):
     dancer_image = models.TextField() # in base64 format (string)
     customer_image = models.TextField() # in base64 format (string)
     dance_sequence = models.ForeignKey(DanceSequence, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    feedback = models.TextField(default="-", max_length=755)
 
 
 

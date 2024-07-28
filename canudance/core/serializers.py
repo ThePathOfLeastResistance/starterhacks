@@ -5,7 +5,7 @@ from rest_framework import serializers
 class ImageSnapShotSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImageSnapshot
-        fields = ['dancer_image', 'customer_image', 'dance_sequence']
+        fields = ['dancer_image', 'customer_image', 'dance_sequence', 'score', 'feedback']
 
 
 class DanceSequenceSerializer(serializers.ModelSerializer):
