@@ -1,3 +1,163 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex.column {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+nav {
+  width: 100%;
+}
+
+p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 200;
+  color: white;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: black;
+  z-index: -5;
+}
+
+h1 {
+  font-size: 9vw;
+  position: absolute;
+  top: calc(100vh - 50vw);
+  font-weight: 800;
+  left: 20px;
+  line-height: 1;
+  letter-spacing: -5px;
+  color: white;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 1;
+  color: white;
+}
+
+.part1-info {
+  background: black;
+  width: 25vw;
+  gap: 40px;
+}
+
+.part2-info {
+  background: black;
+  width: 55vw;
+  gap: 40px;
+}
+/* CSS */
+.button-47 {
+  align-items: center;
+  background: #ffffff;
+  border: 0 solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  color: #1a202c;
+  display: inline-flex;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 56px;
+  justify-content: center;
+  line-height: 24px;
+  overflow-wrap: break-word;
+  padding: 24px;
+  text-decoration: none;
+  width: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+  .button-51 {
+    padding: 16px 32px;
+  }
+}
+
+#part1 {
+  height: 150vh;
+  width: 100%;
+}
+
+#part2 {
+  height: 100vh;
+  width: 100%;
+}
+
+hero {
+  background: black;
+  position: relative;
+  overflow: hidden;
+}
+#part3 {
+  height: 40vh;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  margin-bottom: 150px;
+}
+
+a {
+  color: white;
+}
+
+.scroll-icon {
+  height: 50px;
+  width: 35px;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 5px 14px 20px 14px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1000px) {
+  .canvas-cont {
+    width: 200vw;
+    transform: scale(0.5);
+    left: auto;
+    top: 25vh;
+  }
+
+  h1 {
+    top: 20vw;
+    font-size: 15vw;
+  }
+
+  .part1-info,
+  .part2-info {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 5vw;
+  }
+}
