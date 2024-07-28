@@ -2,34 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-.landing-page {
-  display: grid;
-  grid-template-areas:
-    "big-text big-text big-text model model"
-    "feature-text feature-text feature-text feature-pic feature-pic";
-  gap: 20px;
-  padding: 20px;
+* {
+  font-family: "Bricolage Grotesque", sans-serif;
 }
 
-.big-text {
-  grid-area: big-text;
+.flex {
+  display: flex;
 }
 
-.model {
-  grid-area: model;
+.flex.row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.feature-text {
-  grid-area: feature-text;
+.flex.column {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.feature-pic {
-  grid-area: feature-pic;
+nav {
+  width: 100%;
 }
 
-h1,
-h2,
 p {
   margin: 0;
-  padding: 0;
+  font-size: 18px;
+  font-weight: 200;
+  color: white;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: black;
+  z-index: -5;
+}
+
+h1 {
+  font-size: 9vw;
+  position: absolute;
+  top: calc(100vh - 50vw);
+  font-weight: 800;
+  left: 20px;
+  line-height: 1;
+  letter-spacing: -5px;
+  color: white;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 1;
+  color: white;
+}
+
+.part1-info,
+.part2-info {
+  background: black;
+  width: 30%;
+  gap: 40px;
+  padding: 1%;
+}
+
+#part1,
+#part2 {
+  height: 150vh;
+  width: 100%;
+}
+
+#part3 {
+  height: 120vh;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  margin-bottom: 50px;
+}
+
+a {
+  color: white;
+}
+
+.scroll-icon {
+  height: 50px;
+  width: 35px;
+  border: 1px solid white;
+  border-radius: 100px;
+  padding: 5px 14px 20px 14px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1000px) {
+  .canvas-cont {
+    width: 200vw;
+    transform: scale(0.5);
+    left: auto;
+    top: 25vh;
+  }
+
+  h1 {
+    top: 20vw;
+    font-size: 15vw;
+  }
+
+  .part1-info,
+  .part2-info {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 5vw;
+  }
 }
