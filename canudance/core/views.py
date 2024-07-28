@@ -82,37 +82,6 @@ class ImageSnapShotUploadView(APIView):
                     print(json_content)
                     print(json_content.keys())
 
-                    # Assuming 'response' is your GenerateContentResponse object
-                    '''# Access the list of candidates
-                    candidates = response.result.candidates
-
-                    # Check if there are candidates in the response
-                    if candidates:
-                        # Access the content parts from the first candidate
-                        content_parts = candidates[0].content.parts
-
-                        # Ensure there are content parts available
-                        if content_parts:
-                            # Extract the text from the first part, which contains the response
-                            feedback_text = content_parts[0].text
-
-                            # Print the feedback text (which appears to be in a JSON-like string format)
-                            print("Feedback Text:", feedback_text)
-
-                            # Optionally, parse the JSON-like string if necessary
-                            # Here, we assume the feedback text is a JSON-like string and safely evaluate it
-                            import ast
-                            try:
-                                feedback_data = ast.literal_eval(feedback_text)
-                                score = feedback_data.get('score')
-                                feedback = feedback_data.get('feedback')
-                                
-                                print("Score:", score)
-                                print("Feedback:", feedback)
-                            except (SyntaxError, ValueError) as e:
-                                print("Error parsing feedback text:", e)'''
-
-
                     # Clean up temporary files
                     serializer.save(score=json_content['score'], feedback=json_content['feedback'])
 

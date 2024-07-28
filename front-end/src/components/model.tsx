@@ -10,7 +10,7 @@ const Model: React.FC<ModelProps> = ({ videoRef, isActive }) => {
     <div className="h-full">
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover transition-transform duration-300 ${
+        className={`w-full h-full transition-transform duration-300 ${
           isActive ? "scale-100" : "scale-0"
         }`}
         src="/dance-body.mp4"

@@ -2,7 +2,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import html2canvas from "html2canvas";
-import postScreenshots from "./postScreenshots";
+import {postScreenshots} from "./postScreenshots";
 
 interface ScreenshotManagerProps {
   modelRef: React.RefObject<HTMLDivElement>;

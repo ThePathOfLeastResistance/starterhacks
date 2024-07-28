@@ -1,13 +1,18 @@
 "use client";
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import Webcam from "react-webcam";
-import html2canvas from "html2canvas";
-import postScreenshots from "@/components/postScreenshots";
+import {
+  postScreenshots,
+  fetchDanceFrames,
+} from "@/components/postScreenshots";
 import Model from "@/components/Model";
+import Camera from "@/components/camera";
+import ResultsDisplay, { DanceFrame } from "@/components/ResultsDisplay";
+import ControlButton from "@/components/ControlButton";
+import html2canvas from "html2canvas";
 
 const DanceComponent: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
-  const webcamRef = useRef<Webcam>(null);
+  const [danceFrames, setDanceFrames] = useState<DanceFrame[]>([]);
   const modelRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -33,7 +38,7 @@ const DanceComponent: React.FC = () => {
   };
 
   const handleCapture = useCallback(async () => {
-    if (!isActive) return; // Stop capturing if not active
+    if (!isActive) return;
 
     const screenshots = await captureScreenshots();
     if (screenshots) {
@@ -50,7 +55,7 @@ const DanceComponent: React.FC = () => {
     let intervalId: NodeJS.Timeout | null = null;
 
     if (isActive) {
-      intervalId = setInterval(handleCapture, 500);
+      intervalId = setInterval(handleCapture, 1000);
     }
 
     return () => {
@@ -60,48 +65,40 @@ const DanceComponent: React.FC = () => {
     };
   }, [isActive, handleCapture]);
 
-  const toggleActivity = () => {
-    setIsActive((prev) => !prev);
-    if (videoRef.current) {
-      if (isActive) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
+  const fetchResults = async () => {
+    try {
+      const frames = await fetchDanceFrames();
+      setDanceFrames(frames);
+      console.log("Dance frames fetched:", frames);
+    } catch (error) {
+      console.error("Failed to fetch dance frames:", error);
     }
+  };
+
+  const toggleActivity = () => {
+    setIsActive((prev) => {
+      if (prev) {
+        fetchResults();
+      }
+      if (videoRef.current) {
+        prev ? videoRef.current.pause() : videoRef.current.play();
+      }
+      return !prev;
+    });
   };
 
   return (
     <div className="flex flex-col md:flex-row h-[80svh]">
       <div className="w-full md:w-1/2" ref={modelRef}>
-        <Model videoRef={videoRef} isActive={isActive}/>
+        <Model videoRef={videoRef} isActive={isActive} />
       </div>
       <div className="w-full md:w-1/2" ref={cameraRef}>
-        <div className="h-full flex flex-col">
-          <div className="rounded-lg overflow-hidden flex-grow">
-            {isActive && (
-              <Webcam
-                ref={webcamRef}
-                audio={false}
-                mirrored={true}
-                className="w-full h-full"
-              />
-            )}
-          </div>
-        </div>
+        <Camera isActive={isActive} />
       </div>
-      <div className="absolute inset-x-0 bottom-4 flex justify-center">
-        <button
-          onClick={toggleActivity}
-          className={`font-bold py-5 px-5   rounded-full ${
-            isActive
-              ? "bg-red-500 hover:bg-red-700 text-white"
-              : "bg-blue-500 hover:bg-blue-700 text-white"
-          }`}
-        >
-          {isActive ? "Stop" : "Start"}
-        </button>
-      </div>
+      <ControlButton isActive={isActive} onClick={toggleActivity} />
+      {!isActive && danceFrames.length > 0 && (
+        <ResultsDisplay danceFrames={danceFrames} />
+      )}
     </div>
   );
 };
