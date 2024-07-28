@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework import status
 from rest_framework.views import APIView
-from .models import *
-from .serializers import *
+from . import models
+from . import serializers
+
 
 def home(request):
     return render(request, 'index.html')
@@ -27,16 +27,22 @@ def home(request):
 '''
 
 class ImageSnapShotUploadView(APIView):
-    parser_classes = [FormParser, MultiPartParser]
 
     def get(self, request, format=None):
-        queryset = ImageSnapshot.objects.all()
-        serializer = ImageSnapShotSerializer(queryset, many=True)
+        queryset = models.ImageSnapshot.objects.all()
+        serializer = serializers.ImageSnapShotSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        serializer = ImageSnapShotSerializer(data=request.data)
+        serializer = serializers.ImageSnapShotSerializer(data=request.data)
+        print(serializer.initial_data)
+        serializer.initial_data['dancer_image'] = serializer.initial_data['modelImage']
+        serializer.initial_data['customer_image'] = serializer.initial_data['userImage']
+        serializer.initial_data['dance_sequence'] = 1
+
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.error_messages)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
